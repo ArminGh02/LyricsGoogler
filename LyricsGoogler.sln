@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsGoogler", "LyricsGoogler.csproj", "{CCD98D07-25E1-493E-8619-B0EB33883FDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCD98D07-25E1-493E-8619-B0EB33883FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD98D07-25E1-493E-8619-B0EB33883FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD98D07-25E1-493E-8619-B0EB33883FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD98D07-25E1-493E-8619-B0EB33883FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4666F42-3FCA-46EA-8135-C831B27F8147}
+	EndGlobalSection
+EndGlobal
