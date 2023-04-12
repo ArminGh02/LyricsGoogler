@@ -37,7 +37,7 @@ internal static class Program
 
         var query = $"\"{artist}\" \"{title}\" lyrics";
         var url = $"https://www.google.com/search?q={query}";
-        Process.Start(new ProcessStartInfo()
+        Process.Start(new ProcessStartInfo
         {
             FileName = url,
             UseShellExecute = true,
