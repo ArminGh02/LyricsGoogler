@@ -34,7 +34,8 @@ internal class Config
         Modifiers: MOD_WIN | MOD_SHIFT)
     );
 
-    private Config(HotKey hotKey) { 
+    private Config(HotKey hotKey)
+    {
         HotKey = hotKey;
     }
 
