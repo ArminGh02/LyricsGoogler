@@ -110,8 +110,8 @@ internal class Config
 
     private static void FixConfigFile(string configFilename)
     {
-        const string _config = @"
-# The keyboard shortcut used to invoke the script.
+        const string _config =
+@"# The keyboard shortcut used to invoke the script.
 # It should be of this format: [ModifierKey+]ModifierKey+KeyName
 # Which indicates a plus-seperated list of keys which ends with a regular key
 # and contains at least one modifier key before it.
