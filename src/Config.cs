@@ -11,7 +11,7 @@ namespace LyricsGoogler;
 
 internal class Config
 {
-    public HotKey HotKey { get; private set; }
+    public readonly HotKey HotKey;
 
     private static readonly Dictionary<string, HOT_KEY_MODIFIERS> _modifiersDict = new()
     {
@@ -29,16 +29,14 @@ internal class Config
         ["Ctrl"] = MOD_CONTROL,
     };
 
-    private static readonly Config _default = new Config
-    {
-        HotKey = new HotKey()
-        {
-            Key = Keys.L,
-            Modifiers = MOD_WIN | MOD_SHIFT,
-        }
-    };
+    private static readonly Config _default = new(new HotKey(
+        Key: Keys.L,
+        Modifiers: MOD_WIN | MOD_SHIFT)
+    );
 
-    private Config() { }
+    private Config(HotKey hotKey) { 
+        HotKey = hotKey;
+    }
 
     public static Config Parse(string configFilename)
     {
@@ -96,14 +94,12 @@ internal class Config
             modifiers |= val;
         }
 
-        return new Config()
-        {
-            HotKey = new HotKey()
-            {
-                Key = key,
-                Modifiers = modifiers,
-            },
-        };
+        return new Config(
+            new HotKey(
+                Key: key,
+                Modifiers: modifiers
+            )
+        );
     }
 
     private class ConfigInternal
