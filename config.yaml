@@ -1,0 +1,10 @@
+﻿# The keyboard shortcut used to invoke the script.
+# It should be of this format: [ModifierKey+]ModifierKey+KeyName
+# Which indicates a plus-seperated list of keys which ends with a regular key
+# and contains at least one modifier key before it.
+# modifiers can include:
+#  win
+#  shift
+#  ctrl
+#  alt
+hotkey: win+shift+l

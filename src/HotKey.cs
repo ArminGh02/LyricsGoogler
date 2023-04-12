@@ -8,6 +8,8 @@ using Windows.Win32.UI.Input.KeyboardAndMouse;
 
 namespace LyricsGoogler;
 
+internal readonly record struct HotKey(HOT_KEY_MODIFIERS Modifiers, Keys Key);
+
 internal static class GlobalHotKeyManager
 {
     private static int _hotKeyID = 0;
@@ -27,11 +29,11 @@ internal static class GlobalHotKeyManager
         _form.Load += (sender, e) => { _form.Visible = false; };
     }
 
-    public static void Register(HOT_KEY_MODIFIERS modifiers, Keys key, Action action)
+    public static void Register(HotKey hotKey, Action action)
     {
         var formHandle = _form.Handle;
         var hotKeyID = Interlocked.Increment(ref _hotKeyID);
-        if (!PInvoke.RegisterHotKey(new HWND(formHandle), hotKeyID, modifiers, (uint)key))
+        if (!PInvoke.RegisterHotKey(new HWND(formHandle), hotKeyID, hotKey.Modifiers, (uint)hotKey.Key))
         {
             var err = Marshal.GetLastWin32Error();
             MessageBox.Show($"Could not register hotkey. error code: {err}");
