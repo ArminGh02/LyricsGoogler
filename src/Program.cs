@@ -14,6 +14,7 @@ internal static class Program
 
         using var notifyIcon = new NotifyIconBuilder()
             .WithRunAtStartupMenuItem()
+            .WithOpenConfigFileMenuItem()
             .WithExitMenuItem()
             .Build();
 

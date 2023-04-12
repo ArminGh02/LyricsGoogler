@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
+using System.Diagnostics;
 using System.Drawing;
+using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace LyricsGoogler;
@@ -23,6 +25,21 @@ public class NotifyIconBuilder
         ToolStripMenuItem item = new("Exit", null, (sender, e) =>
         {
             Application.Exit();
+        });
+        _contextMenu ??= new ContextMenuStrip();
+        _contextMenu.Items.Add(item);
+        return this;
+    }
+
+    public NotifyIconBuilder WithOpenConfigFileMenuItem()
+    {
+        ToolStripMenuItem item = new("Open Config File", null, (sender, e) =>
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "config.yaml",
+                UseShellExecute = true,
+            });
         });
         _contextMenu ??= new ContextMenuStrip();
         _contextMenu.Items.Add(item);
