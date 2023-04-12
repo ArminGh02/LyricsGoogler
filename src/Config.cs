@@ -13,7 +13,7 @@ internal class Config
 {
     public readonly HotKey HotKey;
 
-    private static readonly Dictionary<string, HOT_KEY_MODIFIERS> _modifiersDict = new()
+    private static readonly Dictionary<string, HOT_KEY_MODIFIERS> _modifiers = new()
     {
         ["win"] = MOD_WIN,
         ["Win"] = MOD_WIN,
@@ -85,7 +85,7 @@ internal class Config
         HOT_KEY_MODIFIERS modifiers = 0;
         foreach (var modifier in modifiersParts)
         {
-            if (!_modifiersDict.TryGetValue(modifier, out HOT_KEY_MODIFIERS val))
+            if (!_modifiers.TryGetValue(modifier, out HOT_KEY_MODIFIERS val))
             {
                 MessageBox.Show("Invalid hotkey modifier key in config file. Using default hotkey: Win+Shift+L");
                 FixConfigFile(configFilename);
