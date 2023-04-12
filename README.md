@@ -22,3 +22,6 @@ Then just follow the instructions.
 ## See also
 Similar script that googles currently selected text:
 [google-from-everywhere](https://github.com/ArminGh02/google-from-everywhere)
+
+## Credits
+Thanks to [@MisaghM](https://github.com/MisaghM) for creating the icon.
