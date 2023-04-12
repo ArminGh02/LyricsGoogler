@@ -8,7 +8,7 @@ using Windows.Win32.UI.Input.KeyboardAndMouse;
 
 namespace LyricsGoogler;
 
-internal readonly record struct HotKey(HOT_KEY_MODIFIERS Modifiers, Keys Key);
+internal record HotKey(HOT_KEY_MODIFIERS Modifiers, Keys Key);
 
 internal static class GlobalHotKeyManager
 {
