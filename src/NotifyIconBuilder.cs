@@ -14,8 +14,9 @@ public class NotifyIconBuilder
     {
         return new()
         {
+            Text = "Lyrics Googler",
             Visible = true,
-            Icon = SystemIcons.Application,
+            Icon = new Icon("icon.ico"),
             ContextMenuStrip = _contextMenu,
         };
     }
