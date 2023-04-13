@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace LyricsGoogler;
@@ -9,6 +9,7 @@ namespace LyricsGoogler;
 public class NotifyIconBuilder
 {
     private ContextMenuStrip? _contextMenu;
+    private const string RUN_REGISTRY_KEY = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
 
     public NotifyIcon Build()
     {
@@ -55,25 +56,25 @@ public class NotifyIconBuilder
             {
                 return;
             }
-            
+
             menuItem.Checked = !menuItem.Checked;
-            
-            if (!SetRunAtStartup(menuItem.Checked))
-            {
-                MessageBox.Show("Could not configure to run at startup.");
-            }
-        });
+
+            SetRunAtStartup(menuItem.Checked);
+        })
+        {
+            Checked = RunsAtStartup()
+        };
         _contextMenu ??= new ContextMenuStrip();
         _contextMenu.Items.Add(item);
         return this;
     }
 
-    private static bool SetRunAtStartup(bool isEnabled)
+    private static void SetRunAtStartup(bool isEnabled)
     {
-        using RegistryKey? key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+        using RegistryKey? key = Registry.CurrentUser.OpenSubKey(RUN_REGISTRY_KEY, true);
         if (key is null)
         {
-            return false;
+            throw new RegistryKeyNotFoundException(RUN_REGISTRY_KEY);
         }
 
         if (isEnabled)
@@ -84,6 +85,24 @@ public class NotifyIconBuilder
         {
             key.DeleteValue("LyricsGoogler", false);
         }
-        return true;
+    }
+
+    private static bool RunsAtStartup()
+    {
+        using RegistryKey? key = Registry.CurrentUser.OpenSubKey(RUN_REGISTRY_KEY, true);
+        if (key is null)
+        {
+            throw new RegistryKeyNotFoundException(RUN_REGISTRY_KEY);
+        }
+
+        return Application.ExecutablePath.Equals(key.GetValue("LyricsGoogler"));
+    }
+
+    public class RegistryKeyNotFoundException : Exception
+    {
+        public RegistryKeyNotFoundException(string key)
+            : base($"{key} registry key not found.")
+        {
+        }
     }
 }
