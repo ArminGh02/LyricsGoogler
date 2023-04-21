@@ -29,9 +29,11 @@ internal class Config
         ["Ctrl"] = MOD_CONTROL,
     };
 
-    private static readonly Config _default = new(new HotKey(
-        Key: Keys.L,
-        Modifiers: MOD_WIN | MOD_SHIFT)
+    private static readonly Config _default = new(
+        new HotKey(
+            Key: Keys.L,
+            Modifiers: MOD_WIN | MOD_SHIFT
+        )
     );
 
     private Config(HotKey hotKey)
