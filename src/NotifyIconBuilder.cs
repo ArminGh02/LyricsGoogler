@@ -71,11 +71,8 @@ public class NotifyIconBuilder
 
     private static void SetRunAtStartup(bool isEnabled)
     {
-        using RegistryKey? key = Registry.CurrentUser.OpenSubKey(RUN_REGISTRY_KEY, true);
-        if (key is null)
-        {
-            throw new RegistryKeyNotFoundException(RUN_REGISTRY_KEY);
-        }
+        using var key = Registry.CurrentUser.OpenSubKey(RUN_REGISTRY_KEY, true)
+            ?? throw new RegistryKeyNotFoundException(RUN_REGISTRY_KEY);
 
         if (isEnabled)
         {
@@ -89,11 +86,8 @@ public class NotifyIconBuilder
 
     private static bool RunsAtStartup()
     {
-        using RegistryKey? key = Registry.CurrentUser.OpenSubKey(RUN_REGISTRY_KEY, true);
-        if (key is null)
-        {
-            throw new RegistryKeyNotFoundException(RUN_REGISTRY_KEY);
-        }
+        using var key = Registry.CurrentUser.OpenSubKey(RUN_REGISTRY_KEY, true)
+            ?? throw new RegistryKeyNotFoundException(RUN_REGISTRY_KEY);
 
         return Application.ExecutablePath.Equals(key.GetValue("LyricsGoogler"));
     }
