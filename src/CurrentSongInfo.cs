@@ -25,13 +25,13 @@ public static class CurrentSongInfo
     /// </exception>
     public static async Task<(string artist, string title)> GetArtistAndTitle()
     {
-        var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync() 
+        var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync()
             ?? throw new MediaTransportControlsSessionException();
 
-        var session = manager.GetCurrentSession() 
+        var session = manager.GetCurrentSession()
             ?? throw new MediaTransportControlsSessionException();
 
-        var mediaProperties = await session.TryGetMediaPropertiesAsync() 
+        var mediaProperties = await session.TryGetMediaPropertiesAsync()
             ?? throw new MediaPropertiesException();
 
         var artist = mediaProperties.Artist;
