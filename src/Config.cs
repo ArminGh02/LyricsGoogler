@@ -112,7 +112,7 @@ internal class Config
 
     private static void FixConfigFile(string configFilename)
     {
-        const string _config =
+        const string config =
 @"# The keyboard shortcut used to invoke the script.
 # It should be of this format: [ModifierKey+]ModifierKey+KeyName
 # Which indicates a plus-seperated list of keys which ends with a regular key
@@ -124,6 +124,6 @@ internal class Config
 #  alt
 hotkey: win+shift+l
 ";
-        File.WriteAllText(configFilename, _config);
+        File.WriteAllText(configFilename, config);
     }
 }
